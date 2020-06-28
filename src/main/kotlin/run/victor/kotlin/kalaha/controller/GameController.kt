@@ -1,9 +1,7 @@
 package run.victor.kotlin.kalaha.controller
 
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import run.victor.kotlin.kalaha.dto.GameDTO
 import run.victor.kotlin.kalaha.model.Game
 import run.victor.kotlin.kalaha.service.GameService
 
@@ -24,8 +22,12 @@ class GameController {
         this.gameService = gameService
     }
 
-    @GetMapping("/{winner}")
-    fun createGame(@PathVariable winner: String): MutableList<Game> {
-      return this.gameService.createGame(winner)
+    @PostMapping
+    fun createGame(@RequestBody gameDTO : GameDTO): Game {
+        val createGame = this.gameService.createGame(gameDTO)
+
+        println(">>>>>>>>> '${createGame.id}'")
+
+        return createGame;
     }
 }

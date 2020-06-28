@@ -7,7 +7,7 @@ import run.victor.kotlin.kalaha.model.Game
 @Repository
 interface GameRepository : MongoRepository<Game, String>  {
 
-    fun findGamesById(id: String)
+
 
 
 }
